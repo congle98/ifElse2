@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><h1>Tính lãi</h1></div>
+<div><input id="ip1" type="text" placeholder="Nhập số tiền muốn vay:"></div>
+<div><input id="ip2" type="text" placeholder="Số tháng vay dự định:"></div>
+<div><input type="button" value="tính toán" onclick="bt()"></div>
+<div><input style="width: 300px" type="text" placeholder="Kết quả" id="kq"></div>
+</body>
+</html>
+<script>
+    function bt() {
+        let money = parseInt(document.getElementById('ip1').value);
+        let month = parseInt(document.getElementById('ip2').value);
+        let interestRate;
+        let interest;
+        let totalInterst=0;
+        let totalMoney=money;
+        let count;
+        if (0<=month&&month<=3){
+            interestRate=0.1;
+            for (count=1;count<(month+1);count++){
+                interest=totalMoney*interestRate;
+                totalMoney+=interest;
+                totalInterst+=interest;
+
+            }
+            document.getElementById('kq').value='Tiền lãi: '+parseInt(totalInterst)+' tổng lãi gốc: '+parseInt(totalMoney);
+
+        }
+        else if (3<month<=6){
+            interestRate=0.12;
+            for (count=1;count<(month+1);count++){
+                interest=totalMoney*interestRate;
+                totalMoney+=interest;
+                totalInterst+=interest;
+            }
+
+            document.getElementById('kq').value='Tiền lãi: '+parseInt(totalInterst)+' tổng lãi gốc: '+parseInt(totalMoney);
+        }
+        else if (6<month<=12){
+            interestRate=0.15;
+            for (count=1;count<(month+1);count++){
+                interest=totalMoney*interestRate;
+                totalMoney+=interest;
+                totalInterst+=interest;
+            }
+            document.getElementById('kq').value='Tiền lãi: '+parseInt(totalInterst)+' tổng lãi gốc: '+parseInt(totalMoney);
+        }
+        else {
+            interestRate=0.2;
+            for (count=1;count<(month+1);count++){
+                interest=totalMoney*interestRate;
+                totalMoney+=interest;
+                totalInterst+=interest;
+            }
+            document.getElementById('kq').value='Tiền lãi: '+parseInt(totalInterst)+' tổng lãi gốc: '+parseInt(totalMoney);
+        }
+    }
+</script>

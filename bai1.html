@@ -5,6 +5,95 @@
     <title>Title</title>
 </head>
 <body>
+<!--GIẢI PHƯƠNG TRÌNH BẬC 1-->
+<div><h1>Giải phương trình bậc 1: aX-b=0 </h1></div>
+<div><input id="ip1" type="text" placeholder="Nhập tham số a"></div>
+<div><input id="ip2" type="text" placeholder="Nhập tham số b"></div>
+<div><input type="button" value="tính toán" onclick="bt1()"></div>
+<div><input style="width: 300px" type="text" placeholder="Kết quả" id="kq1"></div>
+<!--//GIẢI PHƯƠNG TRÌNH BẬC 2-->
+<div><h1>Giải phương trình bậc 2: aX^2+bX+c=0</h1></div>
+<div><input id="b2ip1" type="text" placeholder="Nhập tham số a"></div>
+<div><input id="b2ip2" type="text" placeholder="Nhập tham số b"></div>
+<div><input id="b2ip3" type="text" placeholder="Nhập tham số c"></div>
+<div><input type="button" value="tính toán" onclick="b2bt()"></div>
+<div><input style="width: 300px" type="text" placeholder="Kết quả" id="b2kq"></div>
+<!--//TÍNH LÃI NGÂN HÀNG-->
+<div><h1>Tính lãi</h1></div>
+<div><input id="b3ip1" type="text" placeholder="Nhập số tiền muốn vay:"></div>
+<div><input id="b3ip2" type="text" placeholder="Số tháng vay dự định:"></div>
+<div><input type="button" value="tính toán" onclick="b3bt()"></div>
+<div><input style="width: 300px" type="text" placeholder="Kết quả" id="b3kq"></div>
 
 </body>
 </html>
+<script>
+
+    function bt1() {
+        let a = parseFloat(document.getElementById('ip1').value);
+        let b = parseFloat(document.getElementById('ip2').value);
+        let x = parseFloat(b/a).toFixed(3);
+        document.getElementById('kq1').value='phương trình '+a+'X - '+b+' = 0 có X bằng: '+x;
+    }
+    function b2bt() {
+        let a = parseFloat(document.getElementById('b2ip1').value);
+        let b = parseFloat(document.getElementById('b2ip2').value);
+        let c = parseFloat(document.getElementById('b2ip3').value);
+        let x1;
+        let x2;
+        let delta = parseFloat(b*b-(4*a*c));
+        if (delta<0){
+            document.getElementById('b2kq').value='Phương trình vô nhiệm';
+        }
+        else if (delta==0){
+            x1=(-b/(2*a)).toFixed(3);
+            document.getElementById('b2kq').value='X1=X2='+x1;
+        }
+        else {
+            x1=((-b+(Math.sqrt(delta)))/2*a).toFixed(3);
+            x2=((-b-(Math.sqrt(delta)))/2*a).toFixed(3);
+            document.getElementById('b2kq').value='X1='+x1+' và X2='+x2;
+        }
+    }
+    function b3bt() {
+        let money = parseInt(document.getElementById('b3ip1').value);
+        let month = parseInt(document.getElementById('b3ip2').value);
+        let interestRate;
+        let interest=0;
+        let totalMoney=money;
+        let count;
+        if (0<=month&&month<=3){
+            interestRate=0.1;
+            for (count=1;count<(month+1);count++){
+                interest+=totalMoney*interestRate;
+                totalMoney+=interest;
+            }
+            document.getElementById('b3kq').value='Tiền lãi: '+interest+' tổng lãi gốc: '+totalMoney;
+
+        }
+        else if (3<month<=6){
+            interestRate=0.12;
+            for (count=1;count<(month+1);count++){
+                interest+=totalMoney*interestRate;
+                totalMoney+=interest;
+            }
+            document.getElementById('b3kq').value='Tiền lãi: '+interest+' tổng lãi gốc: '+totalMoney;
+        }
+        else if (6<month<=12){
+            interestRate=0.15;
+            for (count=1;count<(month+1);count++){
+                interest+=totalMoney*interestRate;
+                totalMoney+=interest;
+            }
+            document.getElementById('b3kq').value='Tiền lãi: '+interest+' tổng lãi gốc: '+totalMoney;
+        }
+        else {
+            interestRate=0.2;
+            for (count=1;count<(month+1);count++){
+                interest+=totalMoney*interestRate;
+                totalMoney+=interest;
+            }
+            document.getElementById('b3kq').value='Tiền lãi: '+interest+' tổng lãi gốc: '+totalMoney;
+        }
+    }
+</script>
